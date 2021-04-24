@@ -5,7 +5,7 @@ const DEFAULT_BALL_SPEED_X = 5;
 const DEFAULT_BALL_SPEED_y = 5;
 
 export default class Ball {
-
+    stopFlag = false;
 
     constructor() {
         this.x = DEFAULT_BALL_POSITION_X;
@@ -28,7 +28,7 @@ export default class Ball {
             this.speedY = -this.speedY;
         }
         if (this.y + this.radius > paddle.y + paddle.height) {
-            document.location.reload()
+            this.stopFlag = true;
         }
     }
 

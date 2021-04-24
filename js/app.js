@@ -10,14 +10,13 @@ window.ctx = canvas.getContext('2d');
 canvas.width = 810;
 canvas.height = 640;
 
-let isStop = false;
 let stopId;
 let score = 0;
 
 document.getElementById("start_button").addEventListener('click', play);
 window.start = function () {
     document.getElementById('Score').innerText = score.toString();
-    if (isStop === true) {
+    if (ball.stopFlag === true) {
         cancelAnimationFrame(stopId);
         gameOver()
     } else {
@@ -70,7 +69,9 @@ function checkBallAndPaddle() {
         if (paddle.isMoveRight === true && ball.speedX < 0){
             ball.revertX()
         }
-        ball.revertY()
+        if(ball.speedY > 0){
+            ball.revertY()
+        }
         score ++;
     }
 
