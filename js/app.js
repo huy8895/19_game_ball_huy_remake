@@ -63,16 +63,16 @@ function checkBallAndPaddle() {
     if (ballRY >= paddle.y
         && ball.x - ball.radius <= (paddle.x + paddle.width)
         && ballRX >= paddle.x) {
-        if (paddle.isMoveLeft === true && ball.speedX > 0){
+        if (paddle.isMoveLeft === true && ball.speedX > 0) {
             ball.revertX()
         }
-        if (paddle.isMoveRight === true && ball.speedX < 0){
+        if (paddle.isMoveRight === true && ball.speedX < 0) {
             ball.revertX()
         }
-        if(ball.speedY > 0){
+        if (ball.speedY > 0) {
             ball.revertY()
         }
-        score ++;
+        score++;
     }
 
 }
