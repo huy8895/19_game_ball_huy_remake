@@ -46,4 +46,18 @@ export default class Ball {
     revertY() {
         this.speedY = -this.speedY;
     }
+
+    speedUp(){
+        if (this.speedX > 0){
+            this.speedX++;
+        } else {
+            this.speedX--;
+        }
+
+        if (this.speedY > 0){
+            this.speedY++;
+        } else {
+            this.speedY--;
+        }
+    }
 }

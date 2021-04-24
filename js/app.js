@@ -73,6 +73,7 @@ function checkBallAndPaddle() {
             ball.revertY()
         }
         score++;
+        ball.speedUp();
     }
 
 }
