@@ -1,9 +1,11 @@
 import Ball from "./ball.js";
 import Paddle from "./paddle.js";
 import gameOver from "./gameOver.js";
+import Player from "./Player.js";
 
 window.ball = new Ball();
 window.paddle = new Paddle();
+window.player = new Player();
 
 window.canvas = document.getElementById('canvas');
 window.ctx = canvas.getContext('2d');
@@ -12,12 +14,17 @@ canvas.height = 640;
 
 let stopId;
 let score = 0;
+showHighScore();
 
 document.getElementById("start_button").addEventListener('click', play);
 window.start = function () {
     document.getElementById('Score').innerText = score.toString();
     if (ball.stopFlag === true) {
         cancelAnimationFrame(stopId);
+        if (checkHighScore()){
+            setHighScore();
+        }
+
         gameOver()
     } else {
         stopId = requestAnimationFrame(start);
@@ -87,3 +94,28 @@ function checkPositionPaddle() {
     }
 }
 
+function showHighScore() {
+    let playerName = localStorage.getItem("playerName");
+    if (playerName) {
+        document.getElementById("playerName").innerHTML = playerName;
+    }
+    let playerScore = localStorage.getItem("playerScore");
+    if (playerScore) {
+        document.getElementById("playerScore").innerHTML = playerScore;
+    }
+}
+
+function checkHighScore() {
+    let playerScore = localStorage.getItem('playerScore')
+    if (playerScore) {
+        return score > playerScore;
+    }
+}
+
+function setHighScore() {
+    player.setHighScore(score);
+    player.showDialog();
+    localStorage.setItem("playerName", player.name);
+    localStorage.setItem("playerScore", player.score);
+
+}
